@@ -1,0 +1,22 @@
+Sample utility C++ code using CGAL for estimating velocity at an arbitrary 3d point from given velocities at sample points.
+
+To incorporate into another program requires the computational geometry c++ header files CGAL from cgal.org.
+
+For simplicity, all the functionality is in one file: two functions are implemented and a main program illustrates their use:
+
+fill_triangulation: fills a triangulation data structure with points from a given file containing a line of 3d point coordinates followed by 3d velocity components.
+
+estimate_velocity: given a triangulation data structure and an arbitrary 3d point, locates the point in the triangulation and approximates the velocity based on those of points nearby in the triangulation.
+
+main: passed two files as arguments. Create triangulation data structure from data in first file argument, print out velocities for points in second file argument.
+
+Build:
+
+cgal_create_CMakeLists -s tetra
+cmake -DCMAKE_BUILD_TYPE=Release .
+make
+
+Run:
+
+./tetra test_data_1 test_data_2
+
