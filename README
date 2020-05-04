@@ -6,7 +6,7 @@ For simplicity, all the functionality is in one file: two functions are implemen
 
 fill_triangulation: fills a triangulation data structure with points from a given file containing a line of 3d point coordinates followed by 3d velocity components.
 
-estimate_velocity: given a triangulation data structure and an arbitrary 3d point, locates the point in the triangulation and approximates the velocity based on those of points nearby in the triangulation.
+estimate_velocity: given a triangulation data structure and an arbitrary 3d point, locates the point in the triangulation and approximates the velocity based on those of points nearby in the triangulation. Currently just averages the nearby vertices; better would be to interpolate as in page 3 of https://www.hpl.hp.com/techreports/2002/HPL-2002-320.pdf
 
 main: passed two files as arguments. Create triangulation data structure from data in first file argument, print out velocities for points in second file argument.
 
