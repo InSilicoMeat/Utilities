@@ -15,8 +15,10 @@ main: passed two files as arguments. Create triangulation data structure from da
 Build:
 
 cgal_create_CMakeLists -s tetra
-cmake -DCMAKE_BUILD_TYPE=Release .
+cmake -DCMAKE_BUILD_TYPE=Release -DCGAL_CXX_FLAGS="-shared -fPIC" .
 make
+
+(The CGAL_CXX_FLAGS only need to be added to make object files compatible with biocellion)
 
 Run:
 
