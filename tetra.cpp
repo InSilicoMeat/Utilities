@@ -82,16 +82,25 @@ void estimate_velocity(Triangulation &T,
       */
       break;
     case Triangulation::CELL:
-      std::cerr<<"("<<x<<", "<<y<<", "<<z<<") is in a Cell\n";
-      // Average the vertex velocities as a very rough approximation.
-      // Better would be to interpolate properly.
-      for (int i = 0; i < 4; i++) {
-	vel = c->vertex(i)->info();
-	u += vel.x();
-	v += vel.y();
-	w += vel.z();
+      {
+        std::cerr<<"("<<x<<", "<<y<<", "<<z<<") is in cell\n";                                                          
+        CGAL::Tetrahedron_3<K> whole = CGAL::Tetrahedron_3<K>(c->vertex(0)->point(), c->vertex(1)->point(), c->vertex(2)->\
+point(), c->vertex(3)->point());
+        double whole_vol = whole.volume();
+
+        for (unsigned i = 0; i < 4; i++) {
+          vel = c->vertex(i)->info();
+          CGAL::Tetrahedron_3<K> part = CGAL::Tetrahedron_3<K>(c->vertex((i+1)%4)->point(), c->vertex((i+2)%4)->point(), c\
+->vertex((i+3)%4)->point(), p);
+          double part_vol = part.volume();
+          part_vol = (part_vol >= 0) ? part_vol : -part_vol;
+          residual_vol -= part_vol;
+          u += vel.x() * part_vol;
+          v += vel.y() * part_vol;
+          w += vel.z() * part_vol;
+        }
+        u/=whole_vol; v/=whole_vol; w/=whole_vol;
       }
-      u/=4; v/=4; w/=4;
       break;
     case Triangulation::OUTSIDE_CONVEX_HULL:
       std::cerr<<"("<<x<<", "<<y<<", "<<z<<") is outside the Convex Hull\n";
