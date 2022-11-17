@@ -4,7 +4,7 @@ This software is under copyright of the CMMC and no license is offered at the mo
 
 Sample utility C++ code using CGAL for estimating velocity at an arbitrary 3d point from given velocities at sample points.
 
-To incorporate into another program requires the computational geometry c++ header files CGAL from cgal.org.
+To incorporate into another program requires the computational geometry c++ header files CGAL from cgal.org. CGAL is distributed under a dual-license scheme. CGAL can be used together with Open Source software free of charge. Using CGAL in other contexts can be done by obtaining a commercial license from [GeometryFactory](http://www.geometryfactory.com/). For more details see their [License page](https://doc.cgal.org/latest/Manual/license.html).
 
 For simplicity, all the functionality is in one file: two functions are implemented and a main program illustrates their use:
 
